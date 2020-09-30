@@ -26,15 +26,15 @@ public class Grid {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
 				// what is this?
-				Cell cell = new Cell(false);
+				Cell cell = new Cell();
 //				cell.setAlive(false);
 				this.grid[i][j] = cell;
 			}
 		}
 
-		this.grid[2][1].setAlive(true);
-		this.grid[2][2].setAlive(true);
-		this.grid[2][3].setAlive(true);
+//		this.grid[2][1].setAlive(true);
+//		this.grid[2][2].setAlive(true);
+//		this.grid[2][3].setAlive(true);
 	}
 
 	public int getRows() {

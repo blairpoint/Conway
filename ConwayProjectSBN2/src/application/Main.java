@@ -1,5 +1,7 @@
 package application;
 
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -12,12 +14,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Main extends Application {
 	private GridPane grid;
 	boolean flag = false;
 	Group viewGroup = new Group();
-	Grid g = new Grid(5, 5);
+	Grid g = new Grid(50, 50);
 
 	private int rows = 300;// later make this infinite
 	private int cols = 300;// grid.getColumnCount();
@@ -47,6 +50,7 @@ public class Main extends Application {
 //		   g.runGame(this.grid);
 		//drawGrid();
 		g.printGrid(this.grid);
+		animate();
 	}
 
 	// private static final int GRIDSIZE = 300;
@@ -104,6 +108,39 @@ public class Main extends Application {
 		else
 			btnStart.setText("Start Moving");
 	}
+	
+	private void animate() {
+		try {
+
+			Transition transition = new Transition() { //creates transition
+				{
+					setCycleDuration(Duration.millis(300));
+				}
+
+				@Override
+				protected void interpolate(double frac) {
+					if (flag == false) //flag for start button pressed to change text
+						return;
+					//grid.getChildren().clear(); //clears each time
+					
+					g.runGame(grid);
+
+				}
+
+				};
+				transition.setCycleCount(Animation.INDEFINITE);
+				transition.setAutoReverse(true);
+				transition.play();
+			}
+
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+					
+					
+					
+					
 	public void Next() {
 		
 		this.runGame();
