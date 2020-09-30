@@ -32,9 +32,7 @@ public class Grid {
 			}
 		}
 
-//		this.grid[2][1].setAlive(true);
-//		this.grid[2][2].setAlive(true);
-//		this.grid[2][3].setAlive(true);
+
 	}
 
 	public int getRows() {
@@ -52,21 +50,40 @@ public class Grid {
 	// this is how to show the retangles.
 
 	public void printGrid(GridPane panel) {
-		for (int r = 0; r < rows; r++) {
-			for (int c = 0; c < columns; c++) {
-				Rectangle rect = new Rectangle(c, r, 10, 10);// getRectangle(panel, i, j);
-				if (grid[r][c].isAlive()) {
-					rect.setFill(Color.AQUA);
-				} else {
-					rect.setFill(Color.BLACK);
-				}
-				panel.add(rect, c, r);
-				// System.out.print(this.grid[i][j] + " ");
-			}
-			// System.out.println("");
-		}
+//		for (int r = 0; r < rows; r++) {
+//			for (int c = 0; c < columns; c++) {
+//				Rectangle rect = new Rectangle(c, r, 10, 10);// getRectangle(panel, i, j);
+//				if (grid[r][c].isAlive()) {
+//					rect.setFill(Color.AQUA);
+//				} else {
+//					rect.setFill(Color.BLACK);
+//				}
+//				panel.add(rect, c, r);
+//				// System.out.print(this.grid[i][j] + " ");
+//			}
+//			// System.out.println("");
+//		}
+		 for (int r = 0; r < rows; r++) {
+	            for (int c = 0; c < columns; c++) {
+	                Rectangle rect = new Rectangle(c, r, 10, 10);
+	                rect.setOnMouseClicked(e->{
+	                    rect.setFill(Color.AQUA);    
+	                    this.grid[(int) rect.getY()][(int) rect.getX()].setAlive(true);
+	                });
+	                if (grid[r][c].isAlive()) {
+	                    rect.setFill(Color.AQUA);
+	                } else {
+	                    rect.setFill(Color.BLACK);
+	                }
+	                panel.add(rect, c, r);
+	            }
+	        }
 
-	}
+	 
+
+	    }
+
+	
 
 	private Rectangle getRectangle(GridPane panel, int r, int c) {
 //		
